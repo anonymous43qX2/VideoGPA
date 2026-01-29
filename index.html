@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoGPA | Visual Quality & Optimization Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .hero-bg { background: radial-gradient(circle at top right, #1e293b, #0f172a); }
+        .toc-link:hover { color: #3b82f6; background: #eff6ff; }
+        .toc-active { color: #3b82f6; border-bottom: 3px solid #3b82f6; font-weight: 600; }
+        #back-to-top { opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; }
+        .video-card { transition: all 0.4s ease; border: 1px solid #f1f5f9; background: white; }
+        .video-card:hover { transform: translateY(-4px); box-shadow: 0 30px 50px -15px rgba(0,0,0,0.08); }
+        .tab-btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .tab-active { background: #3b82f6; color: white; box-shadow: 0 8px 20px -4px rgba(59, 130, 246, 0.4); }
+        .md-analysis { line-height: 1.8; }
+        .md-analysis strong { color: #1e293b; font-weight: 700; }
+    </style>
+</head>
+<body class="bg-[#fafbfc] text-slate-800">
+
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-xl z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-bold text-2xl text-slate-900 tracking-tighter flex items-center">
+            VideoGPA
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm font-bold uppercase tracking-widest text-slate-400">
+                <a href="#abstract" class="toc-link block py-1 text-sm text-slate-500 transition-all">Abstract</a>
+                <a href="#metrics" class="toc-link block py-1 text-sm text-slate-500 transition-all">Benchmarks</a>
+                <a href="#gallery" class="toc-link block py-1 text-sm text-slate-500 transition-all">Visual Gallery</a>
+                <a href="#" target="_blank" class="hover:text-blue-600 transition"><i class="fab fa-github text-xl"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative hero-bg text-white pt-40 pb-24 px-6 overflow-hidden">
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative max-w-5xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-8 tracking-tighter italic text-white">
+                VideoGPA: Distilling Geometry Priors for 3D-Consistent Video Generation
+            </h1>
+
+            
+            <div class="max-w-4xl mx-auto mb-10">
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-lg font-semibold text-slate-100">
+                    <a href="#" class="author-link text-white">Anonymous Authors<sup>1</sup></a>
+                </div>
+                <div class="mt-6 text-sm text-slate-400 space-y-1">
+                    <p><sup>1</sup> Anonymous Institutions</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center items-center gap-6">
+                <a href="#" class="group relative bg-slate-800 hover:bg-slate-700 text-white px-10 py-4 rounded-2xl font-bold transition-all shadow-2xl flex items-center transform hover:-translate-y-1">
+                    <i class="fab fa-github mr-3 text-2xl group-hover:scale-110 transition-transform"></i>
+                    <span>Code</span>
+                </a>
+                <!-- <a href="javascript:void(0)" class="group relative bg-[#B31B1B] hover:bg-[#901515] text-white px-10 py-4 rounded-2xl font-bold transition-all shadow-2xl flex items-center transform hover:-translate-y-1">
+                    <i class="fas fa-file-pdf mr-3 text-2xl group-hover:scale-110 transition-transform"></i>
+                    <span>Paper</span>
+                </a> -->
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[85%] mx-auto px-6 py-24">
+
+        <section id="abstract" class="mb-40 scroll-mt-24 max-w-7xl mx-auto">
+            <div class="bg-white border border-slate-100 p-12 md:p-20 rounded-[3rem] shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full -mr-24 -mt-24 blur-3xl opacity-60"></div>
+                <h2 class="text-xs font-bold text-blue-600 uppercase tracking-[0.4em] mb-10">Abstract</h2>
+                <div id="md-abstract" class="text-xl md:text-xl text-slate-700 leading-relaxed font-medium">
+                    While recent video diffusion models produce visually impressive results, they fundamentally struggle to maintain 3D structural consistency, often resulting in object deformation or spatial drift. We hypothesize that these failures arise because standard denoising objectives lack explicit incentives for geometric coherence. To address this, we introduce **VideoGPA** (**Video** **G**eometric **P**reference **A**lignment), a data-efficient self-supervised framework that leverages geometry foundation model to automatically derive dense preference signals to guide VDMs via Direct Preference Optimization. This approach effectively steers the generative distribution toward inherent 3D consistency without requiring human annotations. VideoGPA significantly enhances temporal stability, phyiscal plausibility, and motion coherence using minimal preference pairs, consistently outperforming state-of-the-art baselines in extensive experiments.
+                </div>
+            </section>
+        
+        <section id="metrics" class="mb-40 scroll-mt-24 max-w-7xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Quantitative Benchmarks</h2>
+                <p class="text-slate-500">Comprehensive results on 3D Reconstruction Error, 3D Geometric Consistency Metrics, and VideoReward Benchmark.</p>
+            </div>
+            
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-x-auto p-4">
+                <table class="w-full text-left text-xs md:text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-100 uppercase tracking-widest font-bold text-slate-500">
+                            <th class="p-4" rowspan="2">Method</th>
+                            <th class="p-4 text-center border-l border-slate-200" colspan="3">3D Reconstruction Error</th>
+                            <th class="p-4 text-center border-l border-slate-200" colspan="3">3D Consistency</th>
+                            <th class="p-4 text-center border-l border-slate-200" colspan="4">VideoReward (Win Rate %)</th>
+                        </tr>
+                        <tr class="bg-slate-50 border-b border-slate-100 text-[10px] text-slate-400">
+                            <th class="p-2 text-center border-l border-slate-200">PSNR ↑</th><th class="p-2 text-center">SSIM ↑</th><th class="p-2 text-center">LPIPS ↓</th>
+                            <th class="p-2 text-center border-l border-slate-200">MVCS ↑</th><th class="p-2 text-center">3DCS ↓</th><th class="p-2 text-center">Epipolar ↓</th>
+                            <th class="p-2 text-center border-l border-slate-200">VQ</th><th class="p-2 text-center">MQ</th><th class="p-2 text-center">TA</th><th class="p-2 text-center">OVL</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50">
+                        <tr class="bg-slate-50/30 font-bold text-slate-400"><td colspan="11" class="p-4 uppercase tracking-tighter italic">Image-to-Video (I2V) Tasks</td></tr>
+                        <tr><td class="p-4">Baseline-I2V</td><td class="p-2 text-center">14.57</td><td class="p-2 text-center">0.455</td><td class="p-2 text-center">0.653</td><td class="p-2 text-center">0.976</td><td class="p-2 text-center">0.687</td><td class="p-2 text-center">0.706</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td></tr>
+                        <tr><td class="p-4">SFT</td><td class="p-2 text-center"><strong>15.23</strong></td><td class="p-2 text-center">0.509</td><td class="p-2 text-center">0.639</td><td class="p-2 text-center">0.982</td><td class="p-2 text-center">0.665</td><td class="p-2 text-center">0.628</td><td class="p-2 text-center">44.67</td><td class="p-2 text-center">33.00</td><td class="p-2 text-center">52.67</td><td class="p-2 text-center">35.00</td></tr>
+                        <tr><td class="p-4">Epipolar-DPO</td><td class="p-2 text-center">15.07</td><td class="p-2 text-center">0.479</td><td class="p-2 text-center">0.615</td><td class="p-2 text-center">0.984</td><td class="p-2 text-center">0.646</td><td class="p-2 text-center">0.571</td><td class="p-2 text-center">67.33</td><td class="p-2 text-center">51.33</td><td class="p-2 text-center">56.67</td><td class="p-2 text-center">66.00</td></tr>
+                        <tr class="text-blue-600 bg-blue-50/20">
+                            <td class="p-4 font-black italic underline text-blue-800">VideoGPA (Ours)</td>
+                            <td class="p-2 text-center">15.19</td> <td class="p-2 text-center"><strong>0.510</strong></td>
+                            <td class="p-2 text-center"><strong>0.608</strong></td>
+                            <td class="p-2 text-center"><strong>0.986</strong></td>
+                            <td class="p-2 text-center"><strong>0.638</strong></td>
+                            <td class="p-2 text-center"><strong>0.564</strong></td>
+                            <td class="p-2 text-center"><strong>74.00</strong></td>
+                            <td class="p-2 text-center"><strong>56.00</strong></td>
+                            <td class="p-2 text-center"><strong>57.67</strong></td>
+                            <td class="p-2 text-center"><strong>76.00</strong></td>
+                        </tr>
+                        
+                        <tr class="bg-slate-50/30 font-bold text-slate-400 border-t-2 border-slate-200"><td colspan="11" class="p-4 uppercase tracking-tighter italic">Text-to-Video (T2V) Tasks</td></tr>
+                        <tr><td class="p-4">Baseline-T2V</td><td class="p-2 text-center">17.53</td><td class="p-2 text-center">0.614</td><td class="p-2 text-center">0.508</td><td class="p-2 text-center">0.967</td><td class="p-2 text-center">0.533</td><td class="p-2 text-center">0.584</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td></tr>
+                        <tr><td class="p-4">SFT</td><td class="p-2 text-center">17.07</td><td class="p-2 text-center">0.573</td><td class="p-2 text-center">0.563</td><td class="p-2 text-center">0.968</td><td class="p-2 text-center">0.586</td><td class="p-2 text-center">0.719</td><td class="p-2 text-center">14.67</td><td class="p-2 text-center">23.67</td><td class="p-2 text-center">39.33</td><td class="p-2 text-center">15.33</td></tr>
+                        <tr><td class="p-4">Epipolar-DPO</td><td class="p-2 text-center"><strong>17.69</strong></td><td class="p-2 text-center">0.618</td><td class="p-2 text-center">0.507</td><td class="p-2 text-center">0.971</td><td class="p-2 text-center">0.528</td><td class="p-2 text-center">0.579</td><td class="p-2 text-center">45.00</td><td class="p-2 text-center">53.67</td><td class="p-2 text-center">49.00</td><td class="p-2 text-center">48.67</td></tr>
+                        <tr class="text-blue-600 bg-blue-50/20">
+                            <td class="p-4 font-black italic underline text-blue-800">VideoGPA (Ours)</td>
+                            <td class="p-2 text-center">17.31</td> <td class="p-2 text-center"><strong>0.621</strong></td>
+                            <td class="p-2 text-center"><strong>0.495</strong></td>
+                            <td class="p-2 text-center"><strong>0.974</strong></td>
+                            <td class="p-2 text-center"><strong>0.519</strong></td>
+                            <td class="p-2 text-center"><strong>0.548</strong></td>
+                            <td class="p-2 text-center"><strong>62.67</strong></td>
+                            <td class="p-2 text-center"><strong>67.00</strong></td>
+                            <td class="p-2 text-center">42.67</td>
+                            <td class="p-2 text-center"><strong>60.33</strong></td>
+                        </tr>
+                        
+                        <tr class="bg-slate-50/30 font-bold text-slate-400 border-t-2 border-slate-200"><td colspan="11" class="p-4 uppercase tracking-tighter italic">Comparison with State-of-the-Art</td></tr>
+                        <tr><td class="p-4">Baseline-T2V15</td><td class="p-2 text-center">15.57</td><td class="p-2 text-center">0.480</td><td class="p-2 text-center">0.555</td><td class="p-2 text-center">0.976</td><td class="p-2 text-center">0.588</td><td class="p-2 text-center">0.685</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td><td class="p-2 text-center">-</td></tr>
+                        <tr><td class="p-4">GeoVideo</td><td class="p-2 text-center"><strong>15.90</strong></td><td class="p-2 text-center"><strong><strong>0.510</strong></strong></td><td class="p-2 text-center">0.643</td><td class="p-2 text-center">0.852</td><td class="p-2 text-center">0.673</td><td class="p-2 text-center">0.840</td><td class="p-2 text-center">17.36</td><td class="p-2 text-center">44.44</td><td class="p-2 text-center">30.56</td><td class="p-2 text-center">18.06</td></tr>
+                        <tr class="text-blue-600 bg-blue-50/20">
+                            <td class="p-4 font-black italic underline text-blue-800">VideoGPA (Ours)</td>
+                            <td class="p-2 text-center">14.88</td>
+                            <td class="p-2 text-center">0.503</td>
+                            <td class="p-2 text-center"><strong>0.520</strong></td>
+                            <td class="p-2 text-center"><strong>0.982</strong></td>
+                            <td class="p-2 text-center"><strong>0.556</strong></td>
+                            <td class="p-2 text-center"><strong>0.567</strong></td>
+                            <td class="p-2 text-center"><strong>60.42</strong></td>
+                            <td class="p-2 text-center"><strong>54.17</strong></td>
+                            <td class="p-2 text-center"><strong>52.08</strong></td>
+                            <td class="p-2 text-center"><strong>57.64</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mt-4 p-4 text-[10px] text-slate-400 italic">
+                    Note: 3DCS denotes our proposed 3D Consistency Score. VQ, MQ, TA, and OVL represent Visual Quality, Motion Quality, Text Alignment, and Overall, respectively. Filtered static videos as Training Stage.
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="mb-40 scroll-mt-24">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-extrabold text-slate-900 mb-8 tracking-tight italic">Result Gallery</h2>
+                <div class="inline-flex bg-slate-100 p-2 rounded-[1.5rem] border border-slate-200 overflow-x-auto max-w-full">
+                    <button onclick="switchCategory('i2v')" id="tab-i2v" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold tab-active">I2V</button>
+                    <button onclick="switchCategory('t2v-static')" id="tab-t2v-static" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold text-slate-500">T2V</button>
+                    <button onclick="switchCategory('t2v-dyn')" id="tab-t2v-dyn" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold text-slate-500">Dynamic Scene</button>
+                </div>
+            </div>
+
+            <div id="video-feed" class="space-y-24">
+                </div>
+        </section>
+
+        <section id="bibtex" class="scroll-mt-24 mb-32 text-slate-500">
+            <h2 class="text-3xl font-bold mb-8 italic text-slate-800">Citation</h2>
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative">
+                <pre id="bib-code" class="text-sm font-mono overflow-x-auto leading-loose italic">
+                    Incoming
+                </pre>
+                <button onclick="copyBib()" class="absolute bottom-6 right-8 px-6 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-blue-600 transition shadow-xl">Copy BibTeX</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white py-20 px-6 border-t border-slate-100 text-center text-slate-300 text-[10px] font-bold uppercase tracking-[0.5em]">
+        VideoGPA Research • 2026
+    </footer>
+
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-10 right-10 w-12 h-12 bg-slate-900 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Data for I2V Comparisons (Existing)
+        const i2vData = [
+            {
+                url: "https://github.com/user-attachments/assets/ded40c82-f320-47f6-86a8-bb4bfbb1df1e",
+                desc: "",
+                prompt: "The video explores a modern building's interior, starting with a view of a staircase with dark marble walls and a colorful light installation. As the camera moves, it reveals various angles of the staircase, the surrounding walls, and the building's contemporary design, including a glass balustrade and a 'Science and Technology' sign. The focus shifts to a hallway with a 'Transforming Lives Through Chemistry' display, a white table, and a blue wall with a green sign. The video concludes with a view of a grand staircase leading to an upper level, with a 'EXIT' sign and a 'Parking Garage' sign visible."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/3c902166-97b0-4fe9-8330-001cdc4ab1e6",
+                desc: "",
+                prompt: "The video shows a series of residential scenes in Westerville, OH, focusing on the maintenance of air conditioning units and utility boxes. Initially, two gray air conditioners are seen on a concrete slab, connected to a white electrical box and a gas meter, with a well-kept lawn and a wooden fence in the background. As the video continues, the number of units increases to four, and the condition of the pipes and electrical boxes varies, indicating regular upkeep. A weathered white gas valve and a rusted red brick wall with a white electrical box are also featured, alongside a neatly trimmed bush and a parked car, suggesting a suburban setting."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/7152d981-8af4-45ce-bd3e-1eb39ace2c9e",
+                desc: "",
+                prompt: "The video features a tranquil park with a variety of trees, including a prominent magnolia and others with autumnal leaves, set against an overcast sky. The park is devoid of people and wildlife, creating a serene atmosphere. As time passes, the scene includes a young magnolia with reddish-brown leaves and a backdrop of leafless trees, suggesting a seasonal transition. The presence of a watermark 'bilibili' indicates the footage may be from a Chinese video platform. The video concludes with a view of a grassy field with trees showing signs of autumn, and a distant high-rise building, hinting at an urban park setting."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/79242745-b24e-400e-826e-cb1f2f933342",
+                desc: "",
+                prompt: "The video takes us through a vibrant video game store, starting with a view of the store's interior, showcasing DVDs, video games, and collectibles. As we move through the store, we see a variety of items including baseball caps, plush toys, and action figures, with clearance signs indicating sales. The store features a range of posters, including 'TRENDPOSTERS' and 'SUPERSTAR POSTERS', and a section dedicated to gaming accessories. The shelves are well-organized, displaying DVDs, Blu-rays, and video games, with a focus on the entertainment industry. The store's atmosphere is inviting, with a warm color palette and a sense of excitement for customers."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/40bfebaf-365c-48f0-90dc-ee574228024a",
+                desc: "",
+                prompt: "The video features a series of pirate-themed amusement rides in an outdoor park setting, with each ride having unique names like 'Pirate Ship,' 'Pirate's Bay,' 'Pirate's Plunder,' 'Pirate's Cove,' 'Pirate's Revenge,' 'Pirate's Castle,' 'Pirate's Bay,' 'Pirate's Plunder,' 'Pirate's Castle,' and 'Pirate's Plunder.' The rides are adorned with vibrant colors, decorative elements, and safety signs, including a 'No Entry' sign and a 'Safety' sign. The surrounding area is lush with trees, and the atmosphere is serene, with no people present. The video captures the tranquil and still ambiance of the park."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/2a603254-6270-4ada-b330-5fcb87f7edbf",
+                desc: "",
+                prompt: "The video features a modern glass building with a reflective facade, situated in an urban setting with a mix of older brick buildings. The building's entrance is marked by a sculpture and a sign, with a black SUV and other vehicles parked in front. As the video progresses, the building's surroundings are shown under a partly cloudy sky, with a red stop sign, blue trash bins, and a street lamp visible. The scene includes a black pickup truck, a silver sedan, and a red SUV parked in the foreground, with the building's entrance and a statue atop a cylindrical structure highlighted. The video concludes with a black SUV parked in front of the building, with a green street sign and a blue dumpster nearby."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/0cd77642-065b-4998-9dab-8c7e6f215282",
+                desc: "",
+                prompt: "The video features an outdoor dining area with a black metal truss canopy and greenery, set against a red wall with large windows reflecting the interior. Initially, the area is empty, with a red pickup truck parked outside. As time passes, the scene includes a red bench, a black table with chairs, and a high-top table with red cushioned chairs. The area is well-lit by pendant lights and natural light, with a 'NO ENTRY' sign and a 'CLOSED' sign indicating the establishment's status. The setting is tranquil, with a red pickup truck and a black car parked nearby, and a 'PARKING' sign suggests restrictions."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/3d4c87bf-edf9-4f86-90db-dabfac6efcb3",
+                desc: "",
+                prompt: "The video shows a warehouse with metal shelves initially empty, with a yellow 'Y' sign and a ladder suggesting recent activity. As time passes, the shelves are seen stocked with car batteries, and a hand truck appears, indicating ongoing work. The warehouse is well-lit, with a red wall and a pallet jack, but no workers are visible. The shelves are neatly organized, and a pallet jack is present, suggesting movement of goods. A black curtain partially conceals the shelves, and a red curtain adds a dramatic flair. The scene is quiet, with a few batteries and a pallet jack, and a red curtain partially veils the shelves, with a few batteries and a pallet jack, and a sign reading 'AUTO PARTS' in the background."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/cb02abbe-4bc3-4040-b131-2ec4bad92ecf",
+                desc: "",
+                prompt: "The video features the Monument to the People's Heroes in Beijing, China, under a clear blue sky. The monument, with its grey stone base and golden Chinese characters, is surrounded by a white railing and lush greenery. As the sun casts a soft glow, the scene remains tranquil and devoid of people, emphasizing the monument's solemnity and historical significance. The inscription on the monument's base changes slightly, indicating different eras or aspects of the monument's history. The serene atmosphere is maintained throughout, with the monument's grandeur highlighted by the sunlight."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/bef53ca6-88b2-4509-83f7-cc6a93c18cca",
+                desc: "",
+                prompt: "A traditional Chinese-style wooden gazebo with a curved roof and ornate latticework is situated in a well-maintained park, surrounded by lush greenery and a winding brick pathway. The scene is tranquil, with a tennis court visible in the background, suggesting a recreational setting. As time passes, the gazebo remains a focal point, with the surrounding trees and the pathway leading to it. The lighting indicates it might be early morning or late afternoon. A modern trash bin with a red and black design appears, indicating an emphasis on cleanliness. The park is serene, with no people or animals present."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/2ce897d7-cac5-416c-9fe7-05b7ec83fe47",
+                desc: "",
+                prompt: "The video takes viewers through a furniture store, showcasing a variety of modern and stylish furniture pieces. Initially, a white sectional sofa with plush cushions is highlighted, surrounded by a dark wood coffee table and a shelving unit with decorative items. As the video continues, different sections of the store are featured, including a cream-colored sofa with a chaise lounge, a round wooden coffee table, and a shelving unit with vases and books. The store's ambiance is warm and inviting, with a focus on contemporary furniture and decorative elements like potted plants and abstract art. The video concludes with a display of a white ceramic pot with green succulents on a wooden stool, surrounded by other furniture pieces."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/4c6dd7f2-bfb4-497d-b524-deb1453eb0c0",
+                desc: "",
+                prompt: "The video features a series of vending machines in an airport terminal, including a colorful lottery machine, a FedEx self-service kiosk, and various other machines like a Pepsi vending machine and a UPS store. The machines are set against a backdrop of modern architecture with reflective floors, bright lighting, and signs indicating accessible restrooms and elevators. The area is quiet and well-lit, with no visible activity, suggesting a moment of stillness in a bustling transit space. The video captures the essence of a busy yet orderly airport environment."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/32e1183b-33ca-482a-b2a4-9d9a75127fcf",
+                desc: "",
+                prompt: "The video features a series of bronze statues in a park, each depicting an adult and a child in various intimate moments, suggesting a theme of guardianship and learning. The statues are set against a backdrop of a wooden bridge, lush greenery, and a clear sky, with a pathway leading to the bridge. The scenes are tranquil, with no people present, and the soft lighting indicates it might be early morning or late afternoon. The presence of a logo in some frames hints at an association with a media outlet or organization."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/fc8c5b53-7697-4645-93f4-101eab465203",
+                desc: "",
+                prompt: "The video features a serene urban setting with a red and black abstract sculpture on a concrete base, surrounded by modern buildings and a clear blue sky. As time passes, the scene includes a cherry picker, a 'Parkway' sign, and a 'Downtown' sign, suggesting maintenance or installation activities. The sculpture's dynamic design contrasts with the tranquil environment. A cherry picker lifts a street sign, and a 'Parkway' sign is visible. The cityscape is quiet, with no people, and a 'Chase' building is seen in the background. The video concludes with a 'PARK' sign and a 'Chase' building, with a cherry picker indicating maintenance work."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/9c75949c-1aeb-4239-8184-afb5ee09dfd4",
+                desc: "",
+                prompt: "The video takes place in a modern furniture store, showcasing a variety of beds with different headboards and mattresses, some wrapped in plastic. The store features a dining set, a kitchenette, and a living area, all under warm lighting. Decorative elements like abstract art, a pink flamingo sculpture, and a plush ostrich toy add whimsy. The store displays beds with blue and white branding, including 'OYO' and 'QUBO', and offers promotional materials. The ambiance is contemporary, with a color scheme of neutral tones and warm lighting, creating an inviting atmosphere for customers."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/8d8e83f6-70c2-4aeb-9787-207e3e2a418c",
+                desc: "",
+                prompt: "The video takes place in a well-lit indoor corridor with a polished floor and high ceilings, adorned with potted plants and educational posters. A red banner with Chinese characters is visible, along with a bulletin board displaying information and photographs. The corridor is empty, with blue social distancing stickers on the floor and a sign indicating the entrance to a building. As the video continues, the corridor is shown with a large window, a door with a red sign, and a staircase. The walls feature colorful murals and a 'Welcome' sign, with a few individuals seen in the distance. The setting suggests a school or community space with a focus on safety and orderliness."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/1bbf5217-5feb-4b02-9264-8e502f37955d",
+                desc: "",
+                prompt: "The video features a tranquil lakeside scene with a wooden boardwalk leading to a gazebo, surrounded by lotus flowers and aquatic plants. The calm waters reflect the soft glow of the sun, either rising or setting, and the hazy skyline of a city with modern skyscrapers. The scene is serene, with no people or wildlife, and the lighting suggests it's either early morning or late afternoon. As time passes, the sky transitions from pale blue to warm orange, and the city's silhouette becomes more pronounced against the natural backdrop. The video captures the peaceful coexistence of nature and urban life."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/eec48773-bb0f-47a6-aab0-03989cf2fabb",
+                desc: "",
+                prompt: "The video takes us through a department store's Halloween section, showcasing a variety of festive decorations. Initially, the store is empty, but as we move through the aisles, we see Halloween-themed items like candles, ornaments, and kitchenware. The decorations are arranged on wooden tables and shelves, with a color scheme of black, orange, and white. Some items feature playful phrases like 'BOO', 'BOOZE', and 'HOME SWEET HALLOWEEN'. The store is well-lit, with a warm ambiance, and the decorations include ghost figures, pumpkins, and bats, creating a cozy, celebratory atmosphere."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/f399ec4c-6b8c-4e21-b6ba-b3562038749c",
+                desc: "",
+                prompt: "The video takes place in a well-lit industrial workshop with a focus on bus maintenance. Initially, a blue and white hydraulic lift is central, with a red banner and a bus under maintenance. The scene shifts to show the lift with a control panel, a red banner with Chinese characters, and a bus with a damaged front end. Various equipment like a manual pallet jack, a red fire extinguisher, and a wooden bench appear, indicating ongoing work. A technician is seen working on a bus, with tools and parts scattered around. The workshop is equipped with multiple lifts, a forklift, and a bus undergoing repair, with a red banner and a sign with Chinese characters visible. The video concludes with a still scene of the workshop, highlighting the bus and the mechanical equipment."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/2472430f-f2bb-4608-9b1f-03c141c5dc2b",
+                desc: "",
+                prompt: "The video features a serene and culturally rich setting, showcasing a traditional Chinese tea ceremony room with a polished wooden table, elegant chairs, and a shelving unit with ceramic vases and books. As time passes, the room is shown with various angles, highlighting the tea set, the bamboo runner, and the soft lighting that creates a tranquil atmosphere. Decorative elements like a potted plant, a small statue, and framed pictures add to the ambiance. The room's design, with its minimalist aesthetic and soft lighting, suggests a space for contemplation and cultural appreciation."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/ccc1f9ed-2971-4d73-b005-c14e5ec07e0d",
+                desc: "",
+                prompt: "The video explores a traditional Chinese museum, starting with a display case of golden figurines and moving through various historical exhibits, including a lion statue, a model of an ancient Chinese city, and a human skeleton with tools. The museum features a high ceiling with wooden beams, stone columns, and bamboo wall panels, with soft lighting enhancing the cultural ambiance. Textual information in Chinese is visible, suggesting an educational purpose. The scenes transition from a serene, well-preserved interior to a more somber, reflective atmosphere with a display case of golden artifacts and a model of a historical battle scene, all under a warm glow."
+            },
+            {
+                url: "https://github.com/user-attachments/assets/96141bb4-5874-4101-8596-e5ce2a9d0b77",
+                desc: "",
+                prompt: "The video takes us through a well-lit warehouse filled with shelves stocked with various items. Initially, we see a red wall with metal shelves holding boxes, bags, and a ladder. As we move forward, the shelves display an assortment of goods including kitchen appliances, cleaning supplies, and automotive parts. The items are neatly organized, with some boxes labeled for specific products. A hand truck is visible, suggesting recent or upcoming activity. The warehouse is brightly lit, with fluorescent lights enhancing the visibility of the goods, which range from new to used, and are methodically arranged for easy access and identification."
+            }
+        ];
+
+        // Data for T2V Dynamic Comparisons (New Animal Set)
+
+        const DynData = [
+            { url: "assets/di2v/1.mp4", desc: '', prompt: "The video shows a dog walking directly toward the camera with a calm and steady gait. Its eyes are fixed forward, and its tail moves slightly, suggesting curiosity or familiarity. The setting is softly lit, with the dog's approach gradually filling the frame and creating a sense of intimacy and engagement." },
+            { url: "assets/di2v/3.mp4", desc: '', prompt: "The video captures a white horse in mid-run, its hooves kicking up dust as it moves across a sun-drenched field. The flowing mane and tail add to the sense of movement, while the soft lighting and open landscape highlight the horse's form and motion." },
+            
+            { url: "assets/dt2v/4.mp4", desc: '', prompt: " A vibrant red fox with a bushy tail and sharp features is captured mid-leap in a snowy forest. The fox's fur contrasts strikingly against the white snow, while the surrounding trees, bare of leaves, create a stark and wintry backdrop. As the fox jumps gracefully, its agile movements are highlighted, showcasing its natural athleticism and adaptability to the cold environment. The scene conveys a sense of energy and vitality, with the fox's focused expression and dynamic pose emphasizing its role as a skilled hunter in the wilderness. The overall atmosphere is one of crispness and liveliness amidst the winter landscape." },
+            { url: "assets/dt2v/6.mp4", desc: '', prompt: "A juvenile swan with grey and white plumage is seen engaging in playful behavior in a tranquil pond, repeatedly dipping its beak and feet into the water. The swan's actions are highlighted by the gentle ripples on the water's surface and the soft lighting, which enhances the serene atmosphere. As time passes, another swan, possibly an adult, appears in the background, observing the young swan's antics. Eventually, a group of juvenile swans is shown, with one engaging in playful behavior while another watches, against a backdrop of lush greenery, suggesting a peaceful, natural habitat. " },
+            { url: "assets/dt2v/8.mp4", desc: '', prompt: " A group of penguins is seen navigating a rocky shoreline, engaging in various activities such as standing, walking, and interacting with each other. The penguins' black and white plumage contrasts against the rugged, grey rocks and the soft blue hues of the surrounding water. The scene captures the penguins' social behavior and their adaptation to the harsh coastal environment. As they move about, the lighting suggests a cool, overcast day, enhancing the natural ambiance of their habitat. The overall mood is one of camaraderie and resilience among these seabirds in their challenging surroundings." },
+            { url: "assets/dt2v/9.mp4", desc: '', prompt: " A majestic elephant with large tusks and wrinkled grey skin is captured in a natural setting, surrounded by sparse vegetation and a few trees. The elephant's massive size and textured skin are highlighted against the backdrop of a clear sky, suggesting a warm, sunny day. As the elephant moves slowly, its trunk sways gently, and its ears flap occasionally, showcasing its calm demeanor. The scene conveys a sense of tranquility and the elephant's harmonious existence within its environment. The overall atmosphere is one of peacefulness and respect for this gentle giant of the wild." },
+            
+            { url: "assets/dt2v15/1.mp4", desc: '', prompt: "A wasp with yellow and black markings is seen pollinating a dandelion flower amidst a lush meadow." },
+            { url: "assets/dt2v15/4.mp4", desc: '', prompt: "A vibrant red fox with a bushy tail and sharp features is captured mid-leap in a snowy forest." },
+            { url: "assets/dt2v15/5.mp4", desc: '', prompt: "Two seagulls are observed on a tranquil beach, engaging in various activities such as standing, walking, and foraging." },
+            { url: "assets/dt2v15/6.mp4", desc: '', prompt: "A juvenile swan with grey and white plumage is seen engaging in playful behavior in a tranquil pond." },
+            { url: "assets/dt2v15/7.mp4", desc: '', prompt: "A tiger stands in stark contrast against the darkness, its silhouette and striped fur highlighted by soft light." },
+          
+        ];
+
+        const t2vStatData = [
+            { url: "assets/st2v/0a1b7c.mp4", desc: '', prompt: "The video features an indoor playground with a variety of amusement rides, including a castle-themed ride with a pink and green color scheme, and a train ride with a similar design. The playground is brightly lit and decorated with a checkered floor pattern. As the video progresses, the playground appears empty, with no people present, and the scene is still. The playground is filled with colorful arcade machines, plush toys, and a claw machine, all under bright lighting. The video concludes with a focus on a pink and green train-shaped ride with a castle-like structure, surrounded by claw machines and other amusement rides." },
+            { url: "assets/st2v/0c6f5d.mp4", desc: '', prompt: "The video takes us through a vibrant video game store, starting with a view of the store's interior, showcasing DVDs, video games, and collectibles. As we move through the store, we see a variety of items including baseball caps, plush toys, and action figures, with clearance signs indicating sales. The store features a range of posters, including 'TRENDPOSTERS' and 'SUPERSTAR POSTERS', and a section dedicated to gaming accessories. The shelves are well-organized, displaying DVDs, Blu-rays, and video games, with a focus on the entertainment industry. The store's atmosphere is inviting, with a warm color palette and a sense of excitement for customers." },
+            { url: "assets/st2v/0e90a9.mp4", desc: '', prompt: "A green and white metal fence encloses a concrete platform with a historical military tank, featuring a long barrel and a red star emblem, suggesting its Chinese origin. The tank is surrounded by dense evergreen trees and a well-maintained lawn, with a sign providing historical context. Over time, the scene includes a green-painted metal fence with white picket tops, a concrete pathway, and a sign with Chinese characters, indicating the tank's location in a park or memorial area. The tank, possibly a M-48 or M-60, is displayed in a tranquil, reflective setting, with a sign indicating its historical significance." },
+            { url: "assets/st2v/09faef.mp4", desc: '', prompt: "The video takes place in a clothing store, starting with a mannequin in a blue 'Columbia' t-shirt and grey pants on a wooden platform, surrounded by sportswear. As time passes, the mannequin changes outfits, including a 'Columbia' logo t-shirt and a 'Cabin' branded t-shirt, while the store's interior showcases various sportswear, casual clothes, and accessories. The store features a green carpet, wooden shelves, and a modern, minimalist design with a geometric wooden structure and vibrant orange stripes. The atmosphere is casual and inviting, with a focus on sportswear and casual wear, and a clear emphasis on the store's contemporary style." },
+            { url: "assets/st2v/010cf7.mp4", desc: '', prompt: "The video features a traditional Chinese-style gazebo with a multi-tiered, pagoda-like structure, set in a park with lush greenery. The gazebo, with its dark brown wooden beams, white columns, and grey tiled roof, is adorned with a blue sign and a black sign with Chinese characters. As the video progresses, the gazebo is shown from various angles, highlighting its architectural details and the surrounding greenery. The structure's design, including a curved roofline and ornate railings, suggests a tranquil and culturally rich environment, possibly linked to a media platform or event." },
+            { url: "assets/st2v/022b2a.mp4", desc: '', prompt: "The video features a series of bronze statues in a park, each depicting an adult and a child in various intimate moments, suggesting a theme of guardianship and learning. The statues are set against a backdrop of a wooden bridge, lush greenery, and a clear sky, with a pathway leading to the bridge. The scenes are tranquil, with no people present, and the soft lighting indicates it might be early morning or late afternoon. The presence of a logo in some frames hints at an association with a media outlet or organization." },
+            { url: "assets/st2v/033d37.mp4", desc: '', prompt: "The video features a series of serene and modern office spaces, each with a distinct design but unified by a tranquil atmosphere. Initially, a small seating area with a round table and blue chairs is shown, surrounded by greenery and a blue-tiled wall. As the video continues, various office spaces are displayed, including a round table with blue chairs, a potted plant, and a glass balustrade leading to an atrium. The designs vary slightly, with changes in the furniture and the addition of a cream-colored bench. The video concludes with a focus on a large potted plant in a gray pot, near a wooden door with a glass panel and an 'EXIT' sign, suggesting a well-maintained and professional environment." },
+            { url: "assets/st2v/074b65.mp4", desc: '', prompt: "The video takes place in a modern furniture store, showcasing a variety of beds with different headboards and mattresses, some wrapped in plastic. The store features a dining set, a kitchenette, and a living area, all under warm lighting. Decorative elements like abstract art, a pink flamingo sculpture, and a plush ostrich toy add whimsy. The store displays beds with blue and white branding, including 'OYO' and 'QUBO', and offers promotional materials. The ambiance is contemporary, with a color scheme of neutral tones and warm lighting, creating an inviting atmosphere for customers." },
+            { url: "assets/st2v/137b1f2.mp4", desc: '', prompt: "The video takes us through a traditional Chinese cultural store, starting with a view of a cherry blossom tree, a guqin, and a moon gate, all under red and gold decorations. As we move through the store, we see a traditional Chinese archway, a bamboo vase with flowers, and shelves stocked with tea sets and umbrellas. The ambiance is warm, with red columns, wooden furniture, and a mountainous landscape on the archway. A red and white sign with Chinese characters is visible, and the store features a cherry blossom tree, a red and white picket fence, and a display of tea sets and umbrellas, creating a festive atmosphere." },
+            { url: "assets/st2v/00713c.mp4", desc: '', prompt: "The video takes us through a department store's Halloween section, showcasing a variety of festive decorations. Initially, the store is empty, but as we move through the aisles, we see Halloween-themed items like candles, ornaments, and kitchenware. The decorations are arranged on wooden tables and shelves, with a color scheme of black, orange, and white. Some items feature playful phrases like 'BOO', 'BOOZE', and 'HOME SWEET HALLOWEEN'. The store is well-lit, with a warm ambiance, and the decorations include ghost figures, pumpkins, and bats, creating a cozy, celebratory atmosphere." },
+            { url: "assets/st2v/0777b2.mp4", desc: '', prompt: "The video explores a modern building's interior, starting with a view of a staircase with dark marble walls and a colorful light installation. As the camera moves, it reveals various angles of the staircase, the surrounding walls, and the building's contemporary design, including a glass balustrade and a 'Science and Technology' sign. The focus shifts to a hallway with a 'Transforming Lives Through Chemistry' display, a white table, and a blue wall with a green sign. The video concludes with a view of a grand staircase leading to an upper level, with a 'EXIT' sign and a 'Parking Garage' sign visible." },
+            { url: "assets/st2v/14839c.mp4", desc: '', prompt: "The video features a series of outdoor fitness equipment in a tranquil park setting, with a backdrop of high-rise residential buildings. The equipment, including solar-paneled shelters, exercise machines, and a multi-station weight training machine, is shown in various states of use and maintenance. The park is well-maintained, with greenery and a basketball hoop, but no people are present, creating a serene atmosphere. The presence of a watermark 'Bilibili' suggests the footage may be from a Chinese video platform. The video concludes with a focus on a leg press machine, highlighting the park's quiet and unused state." },
+        ]
+
+        function renderVideos(list, pathPrefix = "") {
+            const feed = document.getElementById('video-feed');
+            feed.innerHTML = '';
+            if (list.length === 0) {
+                feed.innerHTML = `<div class="py-24 text-center border-2 border-dashed border-slate-200 rounded-[3rem] text-slate-400 italic font-medium">Coming Soon: Static Scene (T2V) results are being prepared.</div>`;
+                return;
+            }
+            list.forEach((v, i) => {
+                const card = document.createElement('div');
+                card.className = 'video-card p-8 md:p-12 rounded-[3.5rem] overflow-hidden';
+                card.innerHTML = `
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-xs">${i + 1}</span>
+                        <div class="h-[1px] flex-1 bg-slate-100"></div>
+                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${v.url.includes('.mp4') && !v.url.includes('/') ? 'Text-to-Video' : 'Image-to-Video'} Comparison</span>
+                    </div>
+                        <video src="${pathPrefix}${v.url}" controls loop autoplay muted playsinline class="w-full rounded-2xl bg-black mb-10 shadow-xl"></video>                    <div class="space-y-6 px-2">
+                        <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-500 italic">
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 italic">Prompt</h4>
+                            <p class="text-slate-800 leading-relaxed">${v.prompt}</p>
+                        </div>
+                        <div class="text-slate-600 leading-relaxed italic text-base md-analysis">
+                            ${marked.parse(v.desc)}
+                        </div>
+                    </div>
+                `;
+                feed.appendChild(card);
+            });
+        }
+
+        function switchCategory(cat) {
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('tab-active');
+                b.classList.add('text-slate-500');
+            });
+            document.getElementById(`tab-${cat}`).classList.add('tab-active');
+            document.getElementById(`tab-${cat}`).classList.remove('text-slate-500');
+
+            if (cat === 'i2v') renderVideos(i2vData);
+            else if (cat === 't2v-dyn') renderVideos(DynData, ""); // Use empty prefix for the provided assets
+            else if (cat === 't2v-static') renderVideos(t2vStatData, ""); // Use empty prefix for the provided assets
+            else renderVideos([]);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const abs = document.getElementById('md-abstract');
+            abs.innerHTML = marked.parse(abs.innerText);
+            renderVideos(i2vData);
+        });
+
+        window.addEventListener('scroll', () => {
+            const btt = document.getElementById('back-to-top');
+            btt.classList.toggle('show', window.scrollY > 800);
+            
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.toc-link');
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 200;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+                if(top >= offset && top < offset + height) {
+                    navLinks.forEach(l => {
+                        l.classList.remove('toc-active');
+                        if(l.getAttribute('href').includes(id)) l.classList.add('toc-active');
+                    });
+                }
+            });
+        });
+
+        function copyBib() {
+            navigator.clipboard.writeText(document.getElementById('bib-code').innerText);
+            alert("BibTeX copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
