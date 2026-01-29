@@ -346,13 +346,23 @@
             { url: "assets/st2v/14839cfd0908fe0a302f16538382693fcfae7111e26a555b46975d06c171ae68.mp4", desc: '', prompt: "The video features a series of outdoor fitness equipment in a tranquil park setting, with a backdrop of high-rise residential buildings. The equipment, including solar-paneled shelters, exercise machines, and a multi-station weight training machine, is shown in various states of use and maintenance. The park is well-maintained, with greenery and a basketball hoop, but no people are present, creating a serene atmosphere. The presence of a watermark 'Bilibili' suggests the footage may be from a Chinese video platform. The video concludes with a focus on a leg press machine, highlighting the park's quiet and unused state." },
         ]
 
-        function renderVideos(list, pathPrefix = "") {
+        function renderVideos(list, pathPrefix = "", categoryType = "i2v") {
             const feed = document.getElementById('video-feed');
             feed.innerHTML = '';
             if (list.length === 0) {
                 feed.innerHTML = `<div class="py-24 text-center border-2 border-dashed border-slate-200 rounded-[3rem] text-slate-400 italic font-medium">Coming Soon: Static Scene (T2V) results are being prepared.</div>`;
                 return;
             }
+            
+            // Map category type to label text
+            const categoryLabels = {
+                'i2v': 'Image-to-Video Comparison',
+                't2v-static': 'Text-to-Video Comparison',
+                't2v-dyn': 'Text-to-Video for Dynamic Scenes'
+            };
+            
+            const label = categoryLabels[categoryType] || 'Video Comparison';
+            
             list.forEach((v, i) => {
                 const card = document.createElement('div');
                 card.className = 'video-card p-8 md:p-12 rounded-[3.5rem] overflow-hidden';
@@ -360,7 +370,7 @@
                     <div class="flex items-center gap-4 mb-8">
                         <span class="w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-xs">${i + 1}</span>
                         <div class="h-[1px] flex-1 bg-slate-100"></div>
-                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${v.url.includes('.mp4') && !v.url.includes('/') ? 'Text-to-Video' : 'Image-to-Video'} Comparison</span>
+                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${label}</span>
                     </div>
                         <video src="${pathPrefix}${v.url}" controls loop autoplay muted playsinline class="w-full rounded-2xl bg-black mb-10 shadow-xl"></video>                    <div class="space-y-6 px-2">
                         <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-500 italic">
@@ -384,16 +394,16 @@
             document.getElementById(`tab-${cat}`).classList.add('tab-active');
             document.getElementById(`tab-${cat}`).classList.remove('text-slate-500');
 
-            if (cat === 'i2v') renderVideos(i2vData);
-            else if (cat === 't2v-dyn') renderVideos(DynData, ""); // Use empty prefix for the provided assets
-            else if (cat === 't2v-static') renderVideos(t2vStatData, ""); // Use empty prefix for the provided assets
+            if (cat === 'i2v') renderVideos(i2vData, "", 'i2v');
+            else if (cat === 't2v-dyn') renderVideos(DynData, "", 't2v-dyn');
+            else if (cat === 't2v-static') renderVideos(t2vStatData, "", 't2v-static');
             else renderVideos([]);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             const abs = document.getElementById('md-abstract');
             abs.innerHTML = marked.parse(abs.innerText);
-            renderVideos(i2vData);
+            renderVideos(i2vData, "", 'i2v');
         });
 
         window.addEventListener('scroll', () => {
