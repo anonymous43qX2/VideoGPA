@@ -169,8 +169,8 @@
             <div class="text-center mb-20">
                 <h2 class="text-5xl font-extrabold text-slate-900 mb-8 tracking-tight italic">Result Gallery</h2>
                 <div class="inline-flex bg-slate-100 p-2 rounded-[1.5rem] border border-slate-200 overflow-x-auto max-w-full">
-                    <button onclick="switchCategory('i2v')" id="tab-i2v" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold tab-active">I2V</button>
-                    <button onclick="switchCategory('t2v-static')" id="tab-t2v-static" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold text-slate-500">T2V</button>
+                    <button onclick="switchCategory('i2v')" id="tab-i2v" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold tab-active">Image-to-Video</button>
+                    <button onclick="switchCategory('t2v-static')" id="tab-t2v-static" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold text-slate-500">Text-to-Video</button>
                     <button onclick="switchCategory('t2v-dyn')" id="tab-t2v-dyn" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold text-slate-500">Dynamic Scene</button>
                 </div>
             </div>
@@ -202,115 +202,115 @@
         // Data for I2V Comparisons (Existing)
         const i2vData = [
             {
-                url: "https://github.com/user-attachments/assets/ded40c82-f320-47f6-86a8-bb4bfbb1df1e",
+                url: "assets/si2v/0777b243.mp4",
                 desc: "",
                 prompt: "The video explores a modern building's interior, starting with a view of a staircase with dark marble walls and a colorful light installation. As the camera moves, it reveals various angles of the staircase, the surrounding walls, and the building's contemporary design, including a glass balustrade and a 'Science and Technology' sign. The focus shifts to a hallway with a 'Transforming Lives Through Chemistry' display, a white table, and a blue wall with a green sign. The video concludes with a view of a grand staircase leading to an upper level, with a 'EXIT' sign and a 'Parking Garage' sign visible."
             },
             {
-                url: "https://github.com/user-attachments/assets/3c902166-97b0-4fe9-8330-001cdc4ab1e6",
+                url: "assets/si2v/01c4ec98.mp4",
                 desc: "",
                 prompt: "The video shows a series of residential scenes in Westerville, OH, focusing on the maintenance of air conditioning units and utility boxes. Initially, two gray air conditioners are seen on a concrete slab, connected to a white electrical box and a gas meter, with a well-kept lawn and a wooden fence in the background. As the video continues, the number of units increases to four, and the condition of the pipes and electrical boxes varies, indicating regular upkeep. A weathered white gas valve and a rusted red brick wall with a white electrical box are also featured, alongside a neatly trimmed bush and a parked car, suggesting a suburban setting."
             },
             {
-                url: "https://github.com/user-attachments/assets/7152d981-8af4-45ce-bd3e-1eb39ace2c9e",
+                url: "assets/si2v/0a415152.mp4",
                 desc: "",
                 prompt: "The video features a tranquil park with a variety of trees, including a prominent magnolia and others with autumnal leaves, set against an overcast sky. The park is devoid of people and wildlife, creating a serene atmosphere. As time passes, the scene includes a young magnolia with reddish-brown leaves and a backdrop of leafless trees, suggesting a seasonal transition. The presence of a watermark 'bilibili' indicates the footage may be from a Chinese video platform. The video concludes with a view of a grassy field with trees showing signs of autumn, and a distant high-rise building, hinting at an urban park setting."
             },
             {
-                url: "https://github.com/user-attachments/assets/79242745-b24e-400e-826e-cb1f2f933342",
+                url: "assets/si2v/0c6f5d61.mp4",
                 desc: "",
                 prompt: "The video takes us through a vibrant video game store, starting with a view of the store's interior, showcasing DVDs, video games, and collectibles. As we move through the store, we see a variety of items including baseball caps, plush toys, and action figures, with clearance signs indicating sales. The store features a range of posters, including 'TRENDPOSTERS' and 'SUPERSTAR POSTERS', and a section dedicated to gaming accessories. The shelves are well-organized, displaying DVDs, Blu-rays, and video games, with a focus on the entertainment industry. The store's atmosphere is inviting, with a warm color palette and a sense of excitement for customers."
             },
             {
-                url: "https://github.com/user-attachments/assets/40bfebaf-365c-48f0-90dc-ee574228024a",
+                url: "assets/si2v/169bb020.mp4",
                 desc: "",
                 prompt: "The video features a series of pirate-themed amusement rides in an outdoor park setting, with each ride having unique names like 'Pirate Ship,' 'Pirate's Bay,' 'Pirate's Plunder,' 'Pirate's Cove,' 'Pirate's Revenge,' 'Pirate's Castle,' 'Pirate's Bay,' 'Pirate's Plunder,' 'Pirate's Castle,' and 'Pirate's Plunder.' The rides are adorned with vibrant colors, decorative elements, and safety signs, including a 'No Entry' sign and a 'Safety' sign. The surrounding area is lush with trees, and the atmosphere is serene, with no people present. The video captures the tranquil and still ambiance of the park."
             },
             {
-                url: "https://github.com/user-attachments/assets/2a603254-6270-4ada-b330-5fcb87f7edbf",
+                url: "assets/si2v/135fc2a1.mp4",
                 desc: "",
                 prompt: "The video features a modern glass building with a reflective facade, situated in an urban setting with a mix of older brick buildings. The building's entrance is marked by a sculpture and a sign, with a black SUV and other vehicles parked in front. As the video progresses, the building's surroundings are shown under a partly cloudy sky, with a red stop sign, blue trash bins, and a street lamp visible. The scene includes a black pickup truck, a silver sedan, and a red SUV parked in the foreground, with the building's entrance and a statue atop a cylindrical structure highlighted. The video concludes with a black SUV parked in front of the building, with a green street sign and a blue dumpster nearby."
             },
             {
-                url: "https://github.com/user-attachments/assets/0cd77642-065b-4998-9dab-8c7e6f215282",
+                url: "assets/si2v/0c7c65cc.mp4",
                 desc: "",
                 prompt: "The video features an outdoor dining area with a black metal truss canopy and greenery, set against a red wall with large windows reflecting the interior. Initially, the area is empty, with a red pickup truck parked outside. As time passes, the scene includes a red bench, a black table with chairs, and a high-top table with red cushioned chairs. The area is well-lit by pendant lights and natural light, with a 'NO ENTRY' sign and a 'CLOSED' sign indicating the establishment's status. The setting is tranquil, with a red pickup truck and a black car parked nearby, and a 'PARKING' sign suggests restrictions."
             },
             {
-                url: "https://github.com/user-attachments/assets/3d4c87bf-edf9-4f86-90db-dabfac6efcb3",
+                url: "assets/si2v/0de066d5.mp4",
                 desc: "",
                 prompt: "The video shows a warehouse with metal shelves initially empty, with a yellow 'Y' sign and a ladder suggesting recent activity. As time passes, the shelves are seen stocked with car batteries, and a hand truck appears, indicating ongoing work. The warehouse is well-lit, with a red wall and a pallet jack, but no workers are visible. The shelves are neatly organized, and a pallet jack is present, suggesting movement of goods. A black curtain partially conceals the shelves, and a red curtain adds a dramatic flair. The scene is quiet, with a few batteries and a pallet jack, and a red curtain partially veils the shelves, with a few batteries and a pallet jack, and a sign reading 'AUTO PARTS' in the background."
             },
             {
-                url: "https://github.com/user-attachments/assets/cb02abbe-4bc3-4040-b131-2ec4bad92ecf",
+                url: "assets/si2v/07d469b7.mp4",
                 desc: "",
-                prompt: "The video features the Monument to the People's Heroes in Beijing, China, under a clear blue sky. The monument, with its grey stone base and golden Chinese characters, is surrounded by a white railing and lush greenery. As the sun casts a soft glow, the scene remains tranquil and devoid of people, emphasizing the monument's solemnity and historical significance. The inscription on the monument's base changes slightly, indicating different eras or aspects of the monument's history. The serene atmosphere is maintained throughout, with the monument's grandeur highlighted by the sunlight."
+                prompt:" The video features a serene urban park with a large, round concrete planter filled with bright red flowers and green foliage. The planter is situated on a sidewalk, with a brick building and a bicycle rack in the background, suggesting a tranquil, eco-friendly environment. As time passes, the scene includes a black picnic table and benches, indicating a space for relaxation. The overcast sky and soft lighting enhance the peaceful atmosphere. The video concludes with a view of the planter against a backdrop of a brick building with large windows, reflecting the sky and creating a tranquil mood."
             },
             {
-                url: "https://github.com/user-attachments/assets/bef53ca6-88b2-4509-83f7-cc6a93c18cca",
+                url: "assets/si2v/0a78c25f.mp4",
                 desc: "",
                 prompt: "A traditional Chinese-style wooden gazebo with a curved roof and ornate latticework is situated in a well-maintained park, surrounded by lush greenery and a winding brick pathway. The scene is tranquil, with a tennis court visible in the background, suggesting a recreational setting. As time passes, the gazebo remains a focal point, with the surrounding trees and the pathway leading to it. The lighting indicates it might be early morning or late afternoon. A modern trash bin with a red and black design appears, indicating an emphasis on cleanliness. The park is serene, with no people or animals present."
             },
             {
-                url: "https://github.com/user-attachments/assets/2ce897d7-cac5-416c-9fe7-05b7ec83fe47",
+                url: "assets/si2v/14eb48a5.mp4",
                 desc: "",
                 prompt: "The video takes viewers through a furniture store, showcasing a variety of modern and stylish furniture pieces. Initially, a white sectional sofa with plush cushions is highlighted, surrounded by a dark wood coffee table and a shelving unit with decorative items. As the video continues, different sections of the store are featured, including a cream-colored sofa with a chaise lounge, a round wooden coffee table, and a shelving unit with vases and books. The store's ambiance is warm and inviting, with a focus on contemporary furniture and decorative elements like potted plants and abstract art. The video concludes with a display of a white ceramic pot with green succulents on a wooden stool, surrounded by other furniture pieces."
             },
             {
-                url: "https://github.com/user-attachments/assets/4c6dd7f2-bfb4-497d-b524-deb1453eb0c0",
-                desc: "",
-                prompt: "The video features a series of vending machines in an airport terminal, including a colorful lottery machine, a FedEx self-service kiosk, and various other machines like a Pepsi vending machine and a UPS store. The machines are set against a backdrop of modern architecture with reflective floors, bright lighting, and signs indicating accessible restrooms and elevators. The area is quiet and well-lit, with no visible activity, suggesting a moment of stillness in a bustling transit space. The video captures the essence of a busy yet orderly airport environment."
-            },
-            {
-                url: "https://github.com/user-attachments/assets/32e1183b-33ca-482a-b2a4-9d9a75127fcf",
-                desc: "",
-                prompt: "The video features a series of bronze statues in a park, each depicting an adult and a child in various intimate moments, suggesting a theme of guardianship and learning. The statues are set against a backdrop of a wooden bridge, lush greenery, and a clear sky, with a pathway leading to the bridge. The scenes are tranquil, with no people present, and the soft lighting indicates it might be early morning or late afternoon. The presence of a logo in some frames hints at an association with a media outlet or organization."
-            },
-            {
-                url: "https://github.com/user-attachments/assets/fc8c5b53-7697-4645-93f4-101eab465203",
+                url: "assets/si2v/036b0f4b.mp4",
                 desc: "",
                 prompt: "The video features a serene urban setting with a red and black abstract sculpture on a concrete base, surrounded by modern buildings and a clear blue sky. As time passes, the scene includes a cherry picker, a 'Parkway' sign, and a 'Downtown' sign, suggesting maintenance or installation activities. The sculpture's dynamic design contrasts with the tranquil environment. A cherry picker lifts a street sign, and a 'Parkway' sign is visible. The cityscape is quiet, with no people, and a 'Chase' building is seen in the background. The video concludes with a 'PARK' sign and a 'Chase' building, with a cherry picker indicating maintenance work."
             },
             {
-                url: "https://github.com/user-attachments/assets/9c75949c-1aeb-4239-8184-afb5ee09dfd4",
+                url: "assets/si2v/074b6597.mp4",
                 desc: "",
                 prompt: "The video takes place in a modern furniture store, showcasing a variety of beds with different headboards and mattresses, some wrapped in plastic. The store features a dining set, a kitchenette, and a living area, all under warm lighting. Decorative elements like abstract art, a pink flamingo sculpture, and a plush ostrich toy add whimsy. The store displays beds with blue and white branding, including 'OYO' and 'QUBO', and offers promotional materials. The ambiance is contemporary, with a color scheme of neutral tones and warm lighting, creating an inviting atmosphere for customers."
             },
             {
-                url: "https://github.com/user-attachments/assets/8d8e83f6-70c2-4aeb-9787-207e3e2a418c",
+                url: "assets/si2v/114adf5c.mp4",
                 desc: "",
                 prompt: "The video takes place in a well-lit indoor corridor with a polished floor and high ceilings, adorned with potted plants and educational posters. A red banner with Chinese characters is visible, along with a bulletin board displaying information and photographs. The corridor is empty, with blue social distancing stickers on the floor and a sign indicating the entrance to a building. As the video continues, the corridor is shown with a large window, a door with a red sign, and a staircase. The walls feature colorful murals and a 'Welcome' sign, with a few individuals seen in the distance. The setting suggests a school or community space with a focus on safety and orderliness."
             },
             {
-                url: "https://github.com/user-attachments/assets/1bbf5217-5feb-4b02-9264-8e502f37955d",
+                url: "assets/si2v/0602fa4d.mp4",
                 desc: "",
                 prompt: "The video features a tranquil lakeside scene with a wooden boardwalk leading to a gazebo, surrounded by lotus flowers and aquatic plants. The calm waters reflect the soft glow of the sun, either rising or setting, and the hazy skyline of a city with modern skyscrapers. The scene is serene, with no people or wildlife, and the lighting suggests it's either early morning or late afternoon. As time passes, the sky transitions from pale blue to warm orange, and the city's silhouette becomes more pronounced against the natural backdrop. The video captures the peaceful coexistence of nature and urban life."
             },
             {
-                url: "https://github.com/user-attachments/assets/eec48773-bb0f-47a6-aab0-03989cf2fabb",
+                url: "assets/si2v/00713c8c.mp4",
                 desc: "",
                 prompt: "The video takes us through a department store's Halloween section, showcasing a variety of festive decorations. Initially, the store is empty, but as we move through the aisles, we see Halloween-themed items like candles, ornaments, and kitchenware. The decorations are arranged on wooden tables and shelves, with a color scheme of black, orange, and white. Some items feature playful phrases like 'BOO', 'BOOZE', and 'HOME SWEET HALLOWEEN'. The store is well-lit, with a warm ambiance, and the decorations include ghost figures, pumpkins, and bats, creating a cozy, celebratory atmosphere."
             },
             {
-                url: "https://github.com/user-attachments/assets/f399ec4c-6b8c-4e21-b6ba-b3562038749c",
+                url: "assets/si2v/07439544.mp4",
                 desc: "",
-                prompt: "The video takes place in a well-lit industrial workshop with a focus on bus maintenance. Initially, a blue and white hydraulic lift is central, with a red banner and a bus under maintenance. The scene shifts to show the lift with a control panel, a red banner with Chinese characters, and a bus with a damaged front end. Various equipment like a manual pallet jack, a red fire extinguisher, and a wooden bench appear, indicating ongoing work. A technician is seen working on a bus, with tools and parts scattered around. The workshop is equipped with multiple lifts, a forklift, and a bus undergoing repair, with a red banner and a sign with Chinese characters visible. The video concludes with a still scene of the workshop, highlighting the bus and the mechanical equipment."
+                prompt: "The video takes us through a well-lit warehouse filled with shelves stocked with various items. Initially, we see a red wall with metal shelves holding boxes, bags, and a ladder. As we move forward, the shelves display an assortment of goods including kitchen appliances, cleaning supplies, and automotive parts. The items are neatly organized, with some boxes labeled for specific products. A hand truck is visible, suggesting recent or upcoming activity. The warehouse is brightly lit, with fluorescent lights enhancing the visibility of the goods, which range from new to used, and are methodically arranged for easy access and identification."
             },
             {
-                url: "https://github.com/user-attachments/assets/2472430f-f2bb-4608-9b1f-03c141c5dc2b",
+                url: "assets/si2v/02881907.mp4",
                 desc: "",
                 prompt: "The video features a serene and culturally rich setting, showcasing a traditional Chinese tea ceremony room with a polished wooden table, elegant chairs, and a shelving unit with ceramic vases and books. As time passes, the room is shown with various angles, highlighting the tea set, the bamboo runner, and the soft lighting that creates a tranquil atmosphere. Decorative elements like a potted plant, a small statue, and framed pictures add to the ambiance. The room's design, with its minimalist aesthetic and soft lighting, suggests a space for contemplation and cultural appreciation."
             },
             {
-                url: "https://github.com/user-attachments/assets/ccc1f9ed-2971-4d73-b005-c14e5ec07e0d",
+                url: "assets/si2v/04603070.mp4",
                 desc: "",
                 prompt: "The video explores a traditional Chinese museum, starting with a display case of golden figurines and moving through various historical exhibits, including a lion statue, a model of an ancient Chinese city, and a human skeleton with tools. The museum features a high ceiling with wooden beams, stone columns, and bamboo wall panels, with soft lighting enhancing the cultural ambiance. Textual information in Chinese is visible, suggesting an educational purpose. The scenes transition from a serene, well-preserved interior to a more somber, reflective atmosphere with a display case of golden artifacts and a model of a historical battle scene, all under a warm glow."
             },
             {
-                url: "https://github.com/user-attachments/assets/96141bb4-5874-4101-8596-e5ce2a9d0b77",
+                url: "assets/si2v/010533f2.mp4",
                 desc: "",
-                prompt: "The video takes us through a well-lit warehouse filled with shelves stocked with various items. Initially, we see a red wall with metal shelves holding boxes, bags, and a ladder. As we move forward, the shelves display an assortment of goods including kitchen appliances, cleaning supplies, and automotive parts. The items are neatly organized, with some boxes labeled for specific products. A hand truck is visible, suggesting recent or upcoming activity. The warehouse is brightly lit, with fluorescent lights enhancing the visibility of the goods, which range from new to used, and are methodically arranged for easy access and identification."
-            }
+                prompt: "The video takes place in a well-lit industrial workshop with a focus on bus maintenance. Initially, a blue and white hydraulic lift is central, with a red banner and a bus under maintenance. The scene shifts to show the lift with a control panel, a red banner with Chinese characters, and a bus with a damaged front end. Various equipment like a manual pallet jack, a red fire extinguisher, and a wooden bench appear, indicating ongoing work. A technician is seen working on a bus, with tools and parts scattered around. The workshop is equipped with multiple lifts, a forklift, and a bus undergoing repair, with a red banner and a sign with Chinese characters visible. The video concludes with a still scene of the workshop, highlighting the bus and the mechanical equipment."
+            },
+            {
+                url: "assets/si2v/0a6c01ac.mp4",
+                desc: "",
+                prompt: "The video features a series of vending machines in an airport terminal, including a colorful lottery machine, a FedEx self-service kiosk, and various other machines like a Pepsi vending machine and a UPS store. The machines are set against a backdrop of modern architecture with reflective floors, bright lighting, and signs indicating accessible restrooms and elevators. The area is quiet and well-lit, with no visible activity, suggesting a moment of stillness in a bustling transit space. The video captures the essence of a busy yet orderly airport environment."
+            },
+            {
+                url: "assets/si2v/022b2aef.mp4",
+                desc: "",
+                prompt: "The video features a series of bronze statues in a park, each depicting an adult and a child in various intimate moments, suggesting a theme of guardianship and learning. The statues are set against a backdrop of a wooden bridge, lush greenery, and a clear sky, with a pathway leading to the bridge. The scenes are tranquil, with no people present, and the soft lighting indicates it might be early morning or late afternoon. The presence of a logo in some frames hints at an association with a media outlet or organization."
+            },
         ];
 
         // Data for T2V Dynamic Comparisons (New Animal Set)
@@ -333,20 +333,20 @@
         ];
 
         const t2vStatData = [
-            { url: "assets/st2v/0a1b7c20a92c43c6b8954b1ac909fb2f0fa8b2997b80604bc8bbec80a1cb2da3.mp4", desc: '', prompt: "The video features an indoor playground with a variety of amusement rides, including a castle-themed ride with a pink and green color scheme, and a train ride with a similar design. The playground is brightly lit and decorated with a checkered floor pattern. As the video progresses, the playground appears empty, with no people present, and the scene is still. The playground is filled with colorful arcade machines, plush toys, and a claw machine, all under bright lighting. The video concludes with a focus on a pink and green train-shaped ride with a castle-like structure, surrounded by claw machines and other amusement rides." },
             { url: "assets/st2v/0c6f5d61c7936a255784bc6ffae6f4055e6a00482581b20f031ef02905009e46.mp4", desc: '', prompt: "The video takes us through a vibrant video game store, starting with a view of the store's interior, showcasing DVDs, video games, and collectibles. As we move through the store, we see a variety of items including baseball caps, plush toys, and action figures, with clearance signs indicating sales. The store features a range of posters, including 'TRENDPOSTERS' and 'SUPERSTAR POSTERS', and a section dedicated to gaming accessories. The shelves are well-organized, displaying DVDs, Blu-rays, and video games, with a focus on the entertainment industry. The store's atmosphere is inviting, with a warm color palette and a sense of excitement for customers." },
-            { url: "assets/st2v/0e90a9d4b08fac209c89aa412e17e36be1d7d829c5ab2e58bfa0b0f492c54e94.mp4", desc: '', prompt: "A green and white metal fence encloses a concrete platform with a historical military tank, featuring a long barrel and a red star emblem, suggesting its Chinese origin. The tank is surrounded by dense evergreen trees and a well-maintained lawn, with a sign providing historical context. Over time, the scene includes a green-painted metal fence with white picket tops, a concrete pathway, and a sign with Chinese characters, indicating the tank's location in a park or memorial area. The tank, possibly a M-48 or M-60, is displayed in a tranquil, reflective setting, with a sign indicating its historical significance." },
             { url: "assets/st2v/09faef52cd70e3c604c7b82a74239dae84d2a8f05d6daaae8bdd8f9659ff40fd.mp4", desc: '', prompt: "The video takes place in a clothing store, starting with a mannequin in a blue 'Columbia' t-shirt and grey pants on a wooden platform, surrounded by sportswear. As time passes, the mannequin changes outfits, including a 'Columbia' logo t-shirt and a 'Cabin' branded t-shirt, while the store's interior showcases various sportswear, casual clothes, and accessories. The store features a green carpet, wooden shelves, and a modern, minimalist design with a geometric wooden structure and vibrant orange stripes. The atmosphere is casual and inviting, with a focus on sportswear and casual wear, and a clear emphasis on the store's contemporary style." },
+            { url: "assets/st2v/0a1b7c20a92c43c6b8954b1ac909fb2f0fa8b2997b80604bc8bbec80a1cb2da3.mp4", desc: '', prompt: "The video features an indoor playground with a variety of amusement rides, including a castle-themed ride with a pink and green color scheme, and a train ride with a similar design. The playground is brightly lit and decorated with a checkered floor pattern. As the video progresses, the playground appears empty, with no people present, and the scene is still. The playground is filled with colorful arcade machines, plush toys, and a claw machine, all under bright lighting. The video concludes with a focus on a pink and green train-shaped ride with a castle-like structure, surrounded by claw machines and other amusement rides." },
             { url: "assets/st2v/010cf78dd4aa5f9de2c83cb366e4ac7fd44791eee7dc5234b3104f752f76b15b.mp4", desc: '', prompt: "The video features a traditional Chinese-style gazebo with a multi-tiered, pagoda-like structure, set in a park with lush greenery. The gazebo, with its dark brown wooden beams, white columns, and grey tiled roof, is adorned with a blue sign and a black sign with Chinese characters. As the video progresses, the gazebo is shown from various angles, highlighting its architectural details and the surrounding greenery. The structure's design, including a curved roofline and ornate railings, suggests a tranquil and culturally rich environment, possibly linked to a media platform or event." },
             { url: "assets/st2v/022b2aef50ac9921330737cd60f1a6d83d59f8b50840cf9b6d23bb6f664c9205.mp4", desc: '', prompt: "The video features a series of bronze statues in a park, each depicting an adult and a child in various intimate moments, suggesting a theme of guardianship and learning. The statues are set against a backdrop of a wooden bridge, lush greenery, and a clear sky, with a pathway leading to the bridge. The scenes are tranquil, with no people present, and the soft lighting indicates it might be early morning or late afternoon. The presence of a logo in some frames hints at an association with a media outlet or organization." },
             { url: "assets/st2v/074b65972001df859504b51561de914b800856c49debd41ded904ed1b2e196bd.mp4", desc: '', prompt: "The video takes place in a modern furniture store, showcasing a variety of beds with different headboards and mattresses, some wrapped in plastic. The store features a dining set, a kitchenette, and a living area, all under warm lighting. Decorative elements like abstract art, a pink flamingo sculpture, and a plush ostrich toy add whimsy. The store displays beds with blue and white branding, including 'OYO' and 'QUBO', and offers promotional materials. The ambiance is contemporary, with a color scheme of neutral tones and warm lighting, creating an inviting atmosphere for customers." },
             { url: "assets/st2v/137b1f244a6eeaa52119c1be2cdf13516dd5a1ee5b5df2c25a13ce777a25610e.mp4", desc: '', prompt: "The video takes us through a traditional Chinese cultural store, starting with a view of a cherry blossom tree, a guqin, and a moon gate, all under red and gold decorations. As we move through the store, we see a traditional Chinese archway, a bamboo vase with flowers, and shelves stocked with tea sets and umbrellas. The ambiance is warm, with red columns, wooden furniture, and a mountainous landscape on the archway. A red and white sign with Chinese characters is visible, and the store features a cherry blossom tree, a red and white picket fence, and a display of tea sets and umbrellas, creating a festive atmosphere." },
             { url: "assets/st2v/00713c8c22cf3b2ef6495b1da5484da9972921442d85a0a3c8be57f7aa9bbbb5.mp4", desc: '', prompt: "The video takes us through a department store's Halloween section, showcasing a variety of festive decorations. Initially, the store is empty, but as we move through the aisles, we see Halloween-themed items like candles, ornaments, and kitchenware. The decorations are arranged on wooden tables and shelves, with a color scheme of black, orange, and white. Some items feature playful phrases like 'BOO', 'BOOZE', and 'HOME SWEET HALLOWEEN'. The store is well-lit, with a warm ambiance, and the decorations include ghost figures, pumpkins, and bats, creating a cozy, celebratory atmosphere." },
+            { url: "assets/st2v/0e90a9d4b08fac209c89aa412e17e36be1d7d829c5ab2e58bfa0b0f492c54e94.mp4", desc: '', prompt: "A green and white metal fence encloses a concrete platform with a historical military tank, featuring a long barrel and a red star emblem, suggesting its Chinese origin. The tank is surrounded by dense evergreen trees and a well-maintained lawn, with a sign providing historical context. Over time, the scene includes a green-painted metal fence with white picket tops, a concrete pathway, and a sign with Chinese characters, indicating the tank's location in a park or memorial area. The tank, possibly a M-48 or M-60, is displayed in a tranquil, reflective setting, with a sign indicating its historical significance." },
             { url: "assets/st2v/0777b243c09e2dff3274f46aa43d412faaec9bf5731c213c92571af668c606f0.mp4", desc: '', prompt: "The video explores a modern building's interior, starting with a view of a staircase with dark marble walls and a colorful light installation. As the camera moves, it reveals various angles of the staircase, the surrounding walls, and the building's contemporary design, including a glass balustrade and a 'Science and Technology' sign. The focus shifts to a hallway with a 'Transforming Lives Through Chemistry' display, a white table, and a blue wall with a green sign. The video concludes with a view of a grand staircase leading to an upper level, with a 'EXIT' sign and a 'Parking Garage' sign visible." },
             { url: "assets/st2v/14839cfd0908fe0a302f16538382693fcfae7111e26a555b46975d06c171ae68.mp4", desc: '', prompt: "The video features a series of outdoor fitness equipment in a tranquil park setting, with a backdrop of high-rise residential buildings. The equipment, including solar-paneled shelters, exercise machines, and a multi-station weight training machine, is shown in various states of use and maintenance. The park is well-maintained, with greenery and a basketball hoop, but no people are present, creating a serene atmosphere. The presence of a watermark 'Bilibili' suggests the footage may be from a Chinese video platform. The video concludes with a focus on a leg press machine, highlighting the park's quiet and unused state." },
         ]
 
-        function renderVideos(list, pathPrefix = "", categoryType = "i2v") {
+        function renderVideos(list, pathPrefix = "", label = "Image-to-Video", labelFunction = null) {
             const feed = document.getElementById('video-feed');
             feed.innerHTML = '';
             if (list.length === 0) {
@@ -354,23 +354,15 @@
                 return;
             }
             
-            // Map category type to label text
-            const categoryLabels = {
-                'i2v': 'Image-to-Video Comparison',
-                't2v-static': 'Text-to-Video Comparison',
-                't2v-dyn': 'Text-to-Video for Dynamic Scenes'
-            };
-            
-            const label = categoryLabels[categoryType] || 'Video Comparison';
-            
             list.forEach((v, i) => {
+                const currentLabel = labelFunction ? labelFunction(i) : label;
                 const card = document.createElement('div');
                 card.className = 'video-card p-8 md:p-12 rounded-[3.5rem] overflow-hidden';
                 card.innerHTML = `
                     <div class="flex items-center gap-4 mb-8">
                         <span class="w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-xs">${i + 1}</span>
                         <div class="h-[1px] flex-1 bg-slate-100"></div>
-                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${label}</span>
+                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${currentLabel}</span>
                     </div>
                         <video src="${pathPrefix}${v.url}" controls loop autoplay muted playsinline class="w-full rounded-2xl bg-black mb-10 shadow-xl"></video>                    <div class="space-y-6 px-2">
                         <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-500 italic">
@@ -394,16 +386,22 @@
             document.getElementById(`tab-${cat}`).classList.add('tab-active');
             document.getElementById(`tab-${cat}`).classList.remove('text-slate-500');
 
-            if (cat === 'i2v') renderVideos(i2vData, "", 'i2v');
-            else if (cat === 't2v-dyn') renderVideos(DynData, "", 't2v-dyn');
-            else if (cat === 't2v-static') renderVideos(t2vStatData, "", 't2v-static');
+            if (cat === 'i2v') renderVideos(i2vData, "", "Image-to-Video");
+            else if (cat === 't2v-dyn') {
+                // First 2 videos: Image-to-Video for Dynamic Scenes
+                // Rest: Text-to-Video for Dynamic Scenes
+                renderVideos(DynData, "", "Dynamic Scene", (index) => {
+                    return index < 2 ? "Image-to-Video for Dynamic Scenes" : "Text-to-Video for Dynamic Scenes";
+                });
+            }
+            else if (cat === 't2v-static') renderVideos(t2vStatData, "", "Text-to-Video");
             else renderVideos([]);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             const abs = document.getElementById('md-abstract');
             abs.innerHTML = marked.parse(abs.innerText);
-            renderVideos(i2vData, "", 'i2v');
+            renderVideos(i2vData, "", "Image-to-Video");
         });
 
         window.addEventListener('scroll', () => {
