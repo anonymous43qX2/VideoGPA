@@ -34,7 +34,7 @@
                 <a href="#abstract" class="toc-link block py-1 text-sm text-slate-500 transition-all">Abstract</a>
                 <a href="#metrics" class="toc-link block py-1 text-sm text-slate-500 transition-all">Benchmarks</a>
                 <a href="#gallery" class="toc-link block py-1 text-sm text-slate-500 transition-all">Visual Gallery</a>
-                <a href="#" target="_blank" class="hover:text-blue-600 transition"><i class="fab fa-github text-xl"></i></a>
+                <a href="https://anonymous.4open.science/r/VideoGPA-anonymous" target="_blank" class="hover:text-blue-600 transition"><i class="fab fa-github text-xl"></i></a>
             </div>
         </div>
     </nav>
@@ -59,9 +59,9 @@
             </div>
 
             <div class="flex flex-wrap justify-center items-center gap-6">
-                <a href="#" class="group relative bg-slate-800 hover:bg-slate-700 text-white px-10 py-4 rounded-2xl font-bold transition-all shadow-2xl flex items-center transform hover:-translate-y-1">
+                <a href="https://anonymous.4open.science/r/VideoGPA-anonymous" class="group relative bg-slate-800 hover:bg-slate-700 text-white px-10 py-4 rounded-2xl font-bold transition-all shadow-2xl flex items-center transform hover:-translate-y-1">
                     <i class="fab fa-github mr-3 text-2xl group-hover:scale-110 transition-transform"></i>
-                    <span>Code</span>
+                    <span>Anonymous Repo</span>
                 </a>
                 <!-- <a href="javascript:void(0)" class="group relative bg-[#B31B1B] hover:bg-[#901515] text-white px-10 py-4 rounded-2xl font-bold transition-all shadow-2xl flex items-center transform hover:-translate-y-1">
                     <i class="fas fa-file-pdf mr-3 text-2xl group-hover:scale-110 transition-transform"></i>
@@ -79,9 +79,10 @@
                 <h2 class="text-xs font-bold text-blue-600 uppercase tracking-[0.4em] mb-10">Abstract</h2>
                 <div id="md-abstract" class="text-xl md:text-xl text-slate-700 leading-relaxed font-medium">
                     While recent video diffusion models (VDMs) produce visually impressive results, they fundamentally struggle to maintain 3D structural consistency, often resulting in object deformation or spatial drift. 
-                    We hypothesize that these failures arise because standard denoising objectives lack explicit incentives for geometric coherence. 
-                    To address this, we introduce <b>VideoGPA</b> (<b>Video</b> <b>G</b>eometric <b>P</b>reference <b>A</b>lignment), a data-efficient self-supervised framework that leverages a geometry foundation model to automatically derive dense preference signals that guide VDMs via Direct Preference Optimization (DPO). 
-                    This approach effectively steers the generative distribution toward inherent 3D consistency without requiring human annotations. <b>VideoGPA</b> significantly enhances temporal stability, physical plausibility, and motion coherence using minimal preference pairs, consistently outperforming state-of-the-art baselines in extensive experiments. 
+                    We hypothesize that these failures arise because standard denoising objectives lack explicit incentives for geometric coherence. To address this, we introduce VideoGPA (Video Geometric Preference Alignment), 
+                    a data-efficient self-supervised framework that leverages a geometry foundation model to automatically derive dense preference signals that guide VDMs via Direct Preference Optimization (DPO). 
+                    This approach effectively steers the generative distribution toward inherent 3D consistency without requiring human annotations. VideoGPA significantly enhances temporal stability, physical plausibility, 
+                    and motion coherence using minimal preference pairs, consistently outperforming state-of-the-art baselines in extensive experiments.
                 </div>
             </section>
         
@@ -167,7 +168,7 @@
 
         <section id="gallery" class="mb-40 scroll-mt-24">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-extrabold text-slate-900 mb-8 tracking-tight italic">Result Gallery</h2>
+                <h2 class="text-5xl font-extrabold text-slate-900 mb-8 tracking-tight italic">Visual Gallery</h2>
                 <div class="inline-flex bg-slate-100 p-2 rounded-[1.5rem] border border-slate-200 overflow-x-auto max-w-full">
                     <button onclick="switchCategory('i2v')" id="tab-i2v" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold tab-active">Image-to-Video</button>
                     <button onclick="switchCategory('t2v-static')" id="tab-t2v-static" class="tab-btn whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold text-slate-500">Text-to-Video</button>
@@ -179,15 +180,6 @@
                 </div>
         </section>
 
-        <section id="bibtex" class="scroll-mt-24 mb-32 text-slate-500">
-            <h2 class="text-3xl font-bold mb-8 italic text-slate-800">Citation</h2>
-            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative">
-                <pre id="bib-code" class="text-sm font-mono overflow-x-auto leading-loose italic">
-                    Incoming
-                </pre>
-                <button onclick="copyBib()" class="absolute bottom-6 right-8 px-6 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-blue-600 transition shadow-xl">Copy BibTeX</button>
-            </div>
-        </section>
     </main>
 
     <footer class="bg-white py-20 px-6 border-t border-slate-100 text-center text-slate-300 text-[10px] font-bold uppercase tracking-[0.5em]">

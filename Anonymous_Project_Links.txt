@@ -1,0 +1,13 @@
+Anonymous Project Links
+
+This file provides anonymous links to supplementary resources referenced in the paper.
+
+1. Anonymous Project Webpage (Visual Results)
+This webpage contains high-resolution video results and additional qualitative comparisons corresponding to figures in the manuscript and supplementary material.
+
+https://anonymous43qx2.github.io/VideoGPA/
+
+2. Anonymous Code Repository
+This repository hosts the anonymized code used for data construction, preference modeling, and post-training alignment described in the paper.
+
+https://anonymous.4open.science/r/VideoGPA-anonymous
